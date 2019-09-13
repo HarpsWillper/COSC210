@@ -5,6 +5,8 @@
  */
 package edu.samford.willharper.survey;
 
+import java.util.Scanner;
+
 /**
  * Represents a survey of questions.
  * @author user
@@ -45,10 +47,23 @@ public class Survey {
     public SurveyResponse conduct(){
         //1. Create the new empty SurveyResponse
         SurveyResponse response = new SurveyResponse(this.questions.length);
+        
+        //1.5 - go ahead and create the scanner object our answer will use
+        Scanner stdin = new Scanner(System.in);
+        
         //2. Repeat the following for all questions:
         //  a. Ask the question (both parts)
         //  b. Get the answers to both parts
         //  c. Add the answer to the survey response
+        for (int i = 0; i < numQuestions; i++){
+            Question question = questions[i];
+            question.display(); //tells the question to display prompt
+            Answer answer = new Answer(question);
+            answer.getScaleResponse(stdin);
+            question.displaySecond();
+            answer.getAdditionalResponse(stdin);
+            response.addAnswer(answer);
+        }
         //3. Return the now-completed response
         return response;
     }

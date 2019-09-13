@@ -44,7 +44,7 @@ public class Question {
      * Displays the question prompt and the scale hint.
      */
     public void display() {
-        System.out.println(prompt + "[" + minscale + "-" + maxscale);
+        System.out.println(prompt + "[" + minscale + "-" + maxscale + "]");
     }
     
     public void displaySecond() {
